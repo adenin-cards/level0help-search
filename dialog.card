@@ -1,0 +1,28 @@
+properties:
+  view1:
+    type: element
+    title: Liquid View 1
+    xtype: at-core-view
+    model: 
+    value: 
+    view: |-
+      <div class="layout-vertical layout-center-justified px pb">
+      	<div class="layout-horizontal layout-justified" style="width:100%">
+      		<div class="font-title blue py layout-start-justified">{{ active.title }}</div>
+      	</div>
+      	{% if active.video %}
+      		<at-carbon-video src="{{ active.video }}"></at-carbon-video>
+      	{% endif %}
+      	<div class="font-body1 grey pt px">{{ active.html }}</div>
+      </div>
+    modelRoot: state.model
+    actionListeners:
+      - _all
+rules: []
+$meta:
+  code: |-
+    action.initialize = function (evt) {
+    	evt.model.active = evt.model.items[evt.model._attrs.index];
+    }
+  cardId: !!int 13
+$type: card

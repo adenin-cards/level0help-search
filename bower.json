@@ -1,0 +1,8 @@
+{
+  "name": "level0help-search",
+  "version": "0.0.1.126",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}

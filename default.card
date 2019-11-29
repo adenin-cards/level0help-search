@@ -1,0 +1,137 @@
+$type: card
+rules: []
+properties:
+  title:
+    type: element
+    xtype: at-carbon-card-title
+    title: title
+    xgridcols: 12
+    xstyle: 
+    xclass: 
+    actionListeners:
+      - _start
+    model: 
+  content:
+    type: element
+    xtype: at-core-view
+    model: 
+    view: |-
+      <div class="layout-vertical layout-center-aligned">
+      	<div class="layout-horizontal layout-center mtsm mb mx">
+      		<input id="search-input" class="psm" at-submit-action="search" placeholder="Enter your keyword here..." value="{{name}}" style="width:100%">
+      		{% if input %}
+      			<at-carbon-icon class="level0help-search-clear-btn" icon="now:cancel" at-click-action="clearSearch" style="height:16px;width:16px;position:absolute;right:64px"></at-carbon-icon>
+      		{% endif %}
+      		<div class="level0help-search-btn layout-center" at-click-action="searchButton">
+      			<at-carbon-icon icon="now:search" style="height:24px;width:24px;top:4px;position:relative;vertical-align:middle"></at-carbon-icon>
+      		</div>
+      	</div>
+      	{% if items.length == 0 %}
+      		<div class="layout-vertical pxlg mb">
+      			<div class="layout-horizontal layout-center pysm px">
+      				<at-carbon-icon icon="now:administration" class="blue" style="min-width:30px;min-height:30px"></at-carbon-icon>
+      				<div class="layout-vertical pl">
+      					<div class="font-title font-bold blue">Request Something</div>
+      					<div class="font-body1 grey">Browse the catalog for services and items you need</div>
+      				</div>
+      			</div>
+      			<div class="layout-horizontal layout-center pysm px">
+      				<at-carbon-icon icon="now:document" class="green" style="min-width:30px;min-height:30px"></at-carbon-icon>
+      				<div class="layout-vertical pl">
+      					<div class="font-title font-bold green">Knowledge Base</div>
+      					<div class="font-body1 grey">Browse and search for articles, rate or submit feedback</div>
+      				</div>
+      			</div>
+      			<div class="layout-horizontal layout-center pysm px">
+      				<at-carbon-icon icon="now:help" class="orange" style="min-width:30px;min-height:30px"></at-carbon-icon>
+      				<div class="layout-vertical pl">
+      					<div class="font-title font-bold orange">Get Help</div>
+      					<div class="font-body1 grey">Contact support to make a request, or report a problem</div>
+      				</div>
+      			</div>
+      			<div class="layout-horizontal layout-center pysm px">
+      				<at-carbon-icon icon="now:quote" class="red" style="min-width:30px;min-height:30px"></at-carbon-icon>
+      				<div class="layout-vertical pl">
+      					<div class="font-title font-bold red">Community</div>
+      					<div class="font-body1 grey">Community sourced answers to your questions</div>
+      				</div>
+      			</div>
+      		</div>
+      	{% else %}
+      		{% for item in items %}
+      			<div class="layout-vertical ptsm pb pxlg list-item-level0help-search" style="cursor:pointer" index="{{forloop.index}}" at-click-action="dialog">
+      				<at-carbon-clamp class="font-title mbsm blue" lines="1">{{ item.title }}</at-carbon-clamp>
+      				<at-carbon-clamp class="font-body1 grey" lines="2">{{ item.description }}</at-carbon-clamp>
+      			</div>
+      		{% endfor %}
+      	{% endif %}
+      </div>
+
+      <style>
+      	.list-item-level0help-search:hover {
+      		background-color: #F5f5f5;
+      	}
+
+      	.level0help-search-btn {
+      		border-top: 1px solid;
+      		border-right: 1px solid;
+      		border-bottom: 1px solid;
+      		height: 36px;
+      		border-color: var(--at-grey);
+      		width: 42px;
+      		text-align: center;
+      		vertical-align: middle;
+      		opacity: 0.8;
+      	}
+
+      	.level0help-search-btn:hover {
+      		background-color: var(--at-light-grey);
+      		cursor: pointer;
+      	}
+
+      	.level0help-search-clear-btn:hover {
+      		cursor: pointer;
+      		color: black;
+      	}
+      </style>
+    xgridcols: 12
+    xstyle: 
+    xclass: 
+    actionListeners:
+      - _all
+    default: 
+    modelRoot: state.model
+    value: 
+$meta:
+  cardId: !!int 13
+  preview-data: |-
+    {
+      "items": [],
+      "_hash": "ddce82843108ce63a41277261eb0775d"
+    }
+  preview-mode: live
+  preview-container: event
+  search-term: 
+  service-url: 
+  xclass: 
+  xstyle: 
+  code: |-
+    action.initialize = function (evt) {
+    	evt.model.showItem = false;
+    }
+
+    action.search = function (evt) {
+    	evt.model.input = evt.srcElement.value;
+    	evt.args.atAgentAction = "input";
+    }
+
+    action.searchButton = function (evt) {
+    	evt.model.input = evt.srcElement.parentElement.firstElementChild.value;
+    	evt.args.atAgentAction = "input";
+    }
+
+    action.clearSearch = function (evt) {
+    	evt.model.items = [];
+    	evt.model.input = undefined;
+    	evt.srcElement.parentElement.firstElementChild.value = "";
+    }

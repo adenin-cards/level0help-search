@@ -1,0 +1,78 @@
+contentType: Card
+title: Knowledge Accelerator
+name: level0help-search
+CollectionModeField:
+  CollectionMode: 0
+MaxItemsField:
+  MaxItems: 3
+PriorityField:
+  Priority: 5
+StreamSource: null
+CardComponent: level0help-search/level0help-search-card
+StoreMetadataField:
+  description: Find all the knowledge resources you need with this chatbot Card.
+  logourl: /level0help-search/Knoweldge.svg
+  storehide: !!bool false
+  disableWorkplace: !!bool false
+  promotion: !!bool true
+  disableBriefing: !!bool true
+CommonPart:
+  Owner: !!int 2
+  Container: null
+  CreatedUtc: 2019-11-29T09:38:04.7793217Z
+  PublishedUtc: 2019-11-29T09:38:04.8063421Z
+  ModifiedUtc: 2019-11-29T09:38:04.7793217Z
+  VersionCreatedUtc: 2019-11-29T09:38:04.0000000
+  VersionPublishedUtc: 2019-11-29T09:38:04.0000000
+  VersionModifiedUtc: 2019-11-29T09:38:04.0000000
+ServicePart:
+  ConnectorTypeId: !!int 0
+  ConnectorName: Script
+  ServiceName: Script
+  Url: ~/api/adenin.GateKeeper.Script
+SearchContextPart:
+  Query: null
+  Interface: null
+CommandPart:
+  CommandType: Utterances
+  Command: |+
+    find knowledge
+
+    search knowledge 
+
+    knowledge accelerator
+
+  DefaultDate: null
+  Intent: null
+  Ext: {}
+AppPart:
+  App: null
+  Url: 
+  ExtUrl: 
+  Priority: !!int 0
+  AppFaceId: !!int 0
+  Category: orange
+  Icon: now:search
+  CSSClasses: null
+  Enabled: !!bool false
+  NewWindow: !!bool false
+  UrlWithId: !!bool true
+  AvailableAppFaceRecords: null
+  HasPattern: !!bool false
+RoleViewPermissionsPart:
+  AllowedRoles: []
+  Audiences:
+    - Authenticated
+  Mandatory: False
+RecurringTaskPart:
+  Schedule: '- - - - -'
+  ActivityType: adenin.Now.Activities.CardTask.UpdateCard
+  StartDateUtc: null
+  EndDateUtc: null
+  NextOccurrenceUtc: null
+  Priority: !!int 5
+  Status: Enabled
+  NowFlag: 0
+  LastExecutionUTC: null
+  EnableWebHook: !!bool false
+  WebHookToken: null
